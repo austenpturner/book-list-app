@@ -14,8 +14,6 @@ export const Head = () => (
   <>
     <title>About Me</title>
     <meta name="description" content="Your description" />
-    //
-    https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/
   </>
 );
 

@@ -6,11 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
-    // colors: {},
     fontFamily: {
       sans: ["Figtree", "sans-serif"],
       header: ['"Rammetto One"', "serif"],
-      // header: ['"Bowlby One SC"', "serif"],
       subheader: ["Martel", "serif"],
     },
   },
