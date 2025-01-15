@@ -41,6 +41,8 @@ RESOURCES:
 
 *Tailwind theme configuration: https://tailwindcss.com/docs/theme#customizing-the-default-theme
 
+*setting up Redux with Gatsby: https://github.com/gatsbyjs/gatsby/blob/master/examples/using-redux/src/state/createStore.js
+
 ROADMAP:
 * fonts and color scheme
 * Figma design
