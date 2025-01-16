@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import BookList from "../components/bookList";
 import Modal from "../components/modal";
 import { useState } from "react";
+import BookSearch from "../components/bookSearch";
 
 export default function IndexPage() {
   const [open, setOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function IndexPage() {
       </button>
       <BookList type={"to-read"} />
       <Modal open={open} onClose={() => setOpen(false)}>
-        <p>Hi from the modal!</p>
+        <BookSearch />
       </Modal>
     </Layout>
   );

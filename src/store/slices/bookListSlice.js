@@ -31,6 +31,8 @@ const bookListSlice = createSlice({
       );
     },
     markAsRead(state, action) {
+      // console.log(action.payload);
+
       const bookIndex = state.toRead.findIndex(
         (book) => book.id === action.payload
       );

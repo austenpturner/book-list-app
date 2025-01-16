@@ -1,0 +1,64 @@
+GENERAL CONCEPT:
+* Book list app that allows you to organize books you have read and books you want to read, create a profile, view a feed
+    - For books you've read you will be able to:
+        i. categorize
+        ii. rate
+        iii. rank
+        iv. take notes
+        v. write reviews
+    - For books you want to read:
+        i. categorize
+        ii. write a note
+        iii. order (read first to read last)
+    - create a profile for yourself and other users
+        i. create public and private books lists
+        ii. recommend books to others
+        iii. comment on other user's reviews, lists, accomplishments (i.e., finishing a book, adding a book to a list)
+    - view and maintain a feed
+        i. see what other user are up to (starting a book, finishing a book, updating lists, sharing reviews, ect.)
+        ii. like and comment on activities and posts
+        iii. create and share posts of your own
+
+
+REQUIREMENTS:
+* Redux
+    - book lists
+        i. books read slice
+        ii. books to read slice
+    - user profile
+        i. user slice
+* Firebase for user authentication and accounts
+* Tailwind CSS for styles
+* Context for global UI updates
+
+
+RESOURCES:
+* tailwind css modals: https://tailwindui.com/components/application-ui/overlays/modal-dialogs
+
+* using tailwind with context: google search provided AI examples - "how to use react context with tailwind css"
+
+* applying google fonts: https://www.itzami.com/blog/how-to-add-a-google-font-to-your-gatsby-tailwind-project
+
+*Tailwind adding custom styles: https://tailwindcss.com/docs/adding-custom-styles
+
+*Tailwind theme configuration: https://tailwindcss.com/docs/theme#customizing-the-default-theme
+
+*setting up Redux with Gatsby: https://github.com/gatsbyjs/gatsby/blob/master/examples/using-redux/src/state/createStore.js
+
+
+ROADMAP:
+* fonts and color scheme
+* Figma design
+* functionality outline
+    - making book lists
+* data structure
+    - redux stores
+* firebase setup
+
+
+DESIGN:
+* fonts
+    - headers: something big and bold
+    - subheaders: serif, easy to read
+    - paragraphs: san serif, easy to read
+

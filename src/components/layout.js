@@ -7,10 +7,10 @@ const Layout = ({ pageTitle, children }) => {
       <nav>
         <ul>
           <li>
-            <Link to="/">To Read</Link>
+            <Link to="/">to read</Link>
           </li>
           <li>
-            <Link to="/about">Books Completed</Link>
+            <Link to="/about">finished</Link>
           </li>
         </ul>
       </nav>

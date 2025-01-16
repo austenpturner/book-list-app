@@ -1,8 +1,9 @@
-import * as React from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeFromToRead,
   removeFromHaveRead,
+  markAsRead,
 } from "../store/slices/bookListSlice";
 
 export default function BookList({ type }) {
@@ -25,6 +26,11 @@ export default function BookList({ type }) {
     }
   }
 
+  function handleMarkAsRead(book) {
+    // console.log(book);
+    dispatch(markAsRead(book.id));
+  }
+
   return (
     <div>
       <h2>{type === "to-read" ? "Books to read" : "Books I've read"}</h2>
@@ -38,6 +44,14 @@ export default function BookList({ type }) {
             >
               remove
             </button>
+            {type === "to-read" && (
+              <button
+                className="bg-blue-500 text-white px-2 py-1 rounded-full"
+                onClick={() => handleMarkAsRead(book)}
+              >
+                mark as read
+              </button>
+            )}
           </li>
         ))}
       </ul>
