@@ -1,7 +1,7 @@
 import * as React from "react";
 import CommonForm from "./commonForm";
 import { bookSearchControls } from "../config/bookListConfig";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToRead } from "../store/slices/bookListSlice";
 import { BsSearch } from "react-icons/bs";
@@ -78,7 +78,7 @@ export default function BookSearch() {
             const { thumbnail } = book.volumeInfo.imageLinks;
             return (
               <li key={book.id}>
-                {/* <img src={thumbnail} alt="book cover" /> */}
+                <img src={thumbnail} alt="book cover" />
                 {title}
                 <button
                   className="bg-blue-500 text-white px-2 py-1 rounded-full"

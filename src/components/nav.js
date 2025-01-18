@@ -9,6 +9,7 @@ export default function Nav() {
           return (
             <li key={item.id}>
               <a href={item.link}>
+                <span className="hidden">{item.name}</span>
                 <item.icon
                   className={`text-slate-900 ${
                     item.name === "profile" ? "w-16 h-16" : "w-10 h-10"

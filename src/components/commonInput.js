@@ -12,12 +12,9 @@ export default function Input({
 }) {
   return (
     <>
-      {label !== "" && (
-        <label htmlFor={name} className="mr-2">
-          {label}
-        </label>
-      )}
-
+      <label htmlFor={id} className="mr-2 hidden" aria-labelledby={name}>
+        {label}
+      </label>
       <input
         name={name}
         id={id}
@@ -25,7 +22,7 @@ export default function Input({
         placeholder={placeholder}
         value={value || ""}
         onChange={onChange}
-        className="block w-11/12 focus:outline-none"
+        className="block w-11/12 focus:outline-none placeholder:italic"
       />
     </>
   );

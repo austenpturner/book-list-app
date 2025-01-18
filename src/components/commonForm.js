@@ -86,7 +86,7 @@ export default function CommonForm({
             className="border border-slate-900 rounded py-1 px-1 w-1/2 flex justify-between"
           >
             {renderFormElement(formControl, formData)}
-            <button type="submit" className="px-2 py-1 rounded-full">
+            <button type="submit" className="px-2 py-1 rounded">
               {btnIcon ? btnIcon : btnText}
             </button>
           </div>
