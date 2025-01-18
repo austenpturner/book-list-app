@@ -2,19 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Figtree:ital,wght@0,300..900;1,300..900&family=Goblin+One&family=Gravitas+One&family=Martel:wght@200;300;400;600;700;800;900&family=Rammetto+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Martel:wght@200;300;400;600;700;800;900&family=Rammetto+One&display=swap");
 
 @layer base {
-  h1 {
-    color: #1d4ed8;
-    font-family: "Rammetto One", system-ui, sans-serif;
-    font-size: 40px;
-  }
+  h1,
   h2 {
-    font-family: "Martel", system-ui, sans-serif;
-    font-size: 32px;
+    font-family: "Rammetto One", system-ui, sans-serif;
   }
-  p {
+  h3,
+  h4 {
+    font-family: "Martel", system-ui, sans-serif;
+  }
+  h5,
+  h6 {
+    font-family: "Figtree", system-ui, sans-serif;
+  }
+  p,
+  li,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  span {
     font-family: "Figtree", system-ui, sans-serif;
     font-weight: 300;
   }

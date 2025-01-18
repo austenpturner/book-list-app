@@ -1,12 +1,12 @@
 import * as React from "react";
 import Layout from "../components/layout";
 
-export default function IndexPage() {
+export default function Profile() {
   return (
     <Layout>
-      <h1>home page</h1>
+      <h1>profile</h1>
     </Layout>
   );
 }
 
-export const Head = () => <title>Home Page</title>;
+export const Head = () => <title>Profile</title>;

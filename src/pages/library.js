@@ -2,19 +2,18 @@ import * as React from "react";
 import Layout from "../components/layout";
 import BookList from "../components/bookList";
 
-const AboutPage = () => {
+export default function Library() {
   return (
-    <Layout pageTitle="Books Completed">
+    <Layout>
       <BookList />
+      <BookList type={"to-read"} />
     </Layout>
   );
-};
+}
 
 export const Head = () => (
   <>
-    <title>About Me</title>
+    <title>Library</title>
     <meta name="description" content="Your description" />
   </>
 );
-
-export default AboutPage;

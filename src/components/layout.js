@@ -1,24 +1,15 @@
 import * as React from "react";
 import { Link } from "gatsby";
+import Header from "./header";
+import Nav from "./nav";
 
-const Layout = ({ pageTitle, children }) => {
+const Layout = ({ children }) => {
   return (
-    <div className="">
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">to read</Link>
-          </li>
-          <li>
-            <Link to="/about">finished</Link>
-          </li>
-        </ul>
-      </nav>
-      <main className="bg-slate-50">
-        <h1 className="text-center">{pageTitle}</h1>
-        {children}
-      </main>
-    </div>
+    <>
+      <Header />
+      <Nav />
+      <main className="ml-20 mt-14 min-h-[calc(100vh - 56px)]">{children}</main>
+    </>
   );
 };
 

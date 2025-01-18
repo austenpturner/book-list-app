@@ -1,12 +1,12 @@
 import * as React from "react";
 import Layout from "../components/layout";
 
-export default function IndexPage() {
+export default function NewPost() {
   return (
     <Layout>
-      <h1>home page</h1>
+      <h1>new post</h1>
     </Layout>
   );
 }
 
-export const Head = () => <title>Home Page</title>;
+export const Head = () => <title>New Post</title>;

@@ -22,9 +22,11 @@ GENERAL CONCEPT:
 
 REQUIREMENTS:
 * Redux
-    - book lists
-        i. books read slice
-        ii. books to read slice
+    - books slice
+        i. library
+        ii. read list
+        iii. favorites (anything rated 4+ starts)
+        iv. top-five (ranked from 1-5)
     - user profile
         i. user slice
 * Firebase for user authentication and accounts
@@ -45,6 +47,8 @@ RESOURCES:
 
 *setting up Redux with Gatsby: https://github.com/gatsbyjs/gatsby/blob/master/examples/using-redux/src/state/createStore.js
 
+* hamburger menu: https://flowbite.com/docs/components/navbar/
+
 
 ROADMAP:
 * fonts and color scheme
@@ -61,4 +65,141 @@ DESIGN:
     - headers: something big and bold
     - subheaders: serif, easy to read
     - paragraphs: san serif, easy to read
+
+LAYOUT:
+* header
+    i. App name
+    ii. settings menu
+* page
+* nav
+    i. home
+    ii. new post
+    iii. profile
+    iv. library
+    v. book search
+
+SETTINGS MENU:
+* notifications
+* messages
+* edit profile
+    i. display name
+    ii. bio (what kind of books do you like... )
+* account info
+    i. email
+    ii. password
+* friends
+* liked posts
+
+MODALS:
+* book view (clicking on someone's post with book attached)
+* finished book
+* review added
+* book added (to read list/library)
+* started reading (when you start reading something on your read list)
+
+PAGES:
+* home page 
+    - feed
+        i. posts (following, starting from most recent)
+            - header
+                i. profile pic
+                ii. display name
+                iii. account name
+                iv. options button
+            - body
+                i. text
+            - footer
+                i. timestamp
+                ii. like button
+                iii. comment button
+                iv. add to read list button
+                    * blue to add
+                    * green with check if already in library
+                    * grey if post without a book object
+* new post
+    - header
+    - post editor
+        i. text area
+        ii. delete button
+        iii. edit button
+    - share button (only displayed if textarea contains content)
+* profile page
+    - header
+        i. profile pic 
+        ii. display name 
+        iii. account name 
+        iv. bio
+        v. friends
+    - profile nav
+        i. posts 
+        ii. favorites
+        iii. reading 
+    - view (based on profile nav item selected)
+* library
+    - search bar
+    - filter & sort menu
+        i. filter drop down
+            - all books
+            - read list
+            - currently reading (?)
+            - finished
+            - favorites
+            - top five
+        ii. sort drop down
+            - all books
+                i. date added (to library)
+                ii. by title
+                iii. by author
+            - read list
+                i. date added (to library)
+                ii. by title
+                iii. by author
+                iv. currently reading (?)
+            - finished
+                i. date added (to library)
+                ii. by title
+                iii. by author
+                iv. rating
+                v. date finished
+            - favorites
+                i. date added (to library)
+                ii. by title
+                iii. by author
+                iv. rating
+                v. date finished
+            - top five
+                i. date added (to library)
+                ii. by title
+                iii. by author
+                iv. rating
+                v. date finished
+        iii. books
+            - book
+                i. details container
+                    - cover container
+                        i. thumbnail
+                        ii. read button
+                    - title
+                    - author
+                ii. info container
+                    - rating
+                        i. star map
+                    - ranking
+                        i. select drop down
+                    - review
+                        i. write a review button
+                            * new review (only allowed on books in your library - can be seen by followers)
+                            - header
+                            - review editor
+                                i. text area
+                                ii. delete button
+                                iii. edit button
+                            - share button (only displayed if textarea contains content)
+                        ii. OR review text
+                    - lists
+                        i. lists book has been added to (library, finished, read list, reading, favorites)
+                           
+* book search
+
+
 

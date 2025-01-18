@@ -11,10 +11,13 @@ export default function Input({
   onChange,
 }) {
   return (
-    <div className="flex flex-row">
-      <label htmlFor={name} className="mr-2">
-        {label}
-      </label>
+    <>
+      {label !== "" && (
+        <label htmlFor={name} className="mr-2">
+          {label}
+        </label>
+      )}
+
       <input
         name={name}
         id={id}
@@ -22,9 +25,9 @@ export default function Input({
         placeholder={placeholder}
         value={value || ""}
         onChange={onChange}
-        className="border-1 border-blue-500 w-2/4"
+        className="block w-11/12 focus:outline-none"
       />
-    </div>
+    </>
   );
 }
 

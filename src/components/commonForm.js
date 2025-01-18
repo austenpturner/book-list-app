@@ -15,6 +15,7 @@ export default function CommonForm({
   setFormData,
   onSubmit,
   btnText,
+  btnIcon,
 }) {
   function renderFormElement(getCurrentFormControl, getFormData) {
     let element = null;
@@ -77,20 +78,20 @@ export default function CommonForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-row my-4 content-center">
+    <form onSubmit={onSubmit} className="flex justify-center">
       {formControls.map((formControl) => {
         return (
-          <div key={formControl.id} className="self-center">
+          <div
+            key={formControl.id}
+            className="border border-slate-900 rounded py-1 px-1 w-1/2 flex justify-between"
+          >
             {renderFormElement(formControl, formData)}
+            <button type="submit" className="px-2 py-1 rounded-full">
+              {btnIcon ? btnIcon : btnText}
+            </button>
           </div>
         );
       })}
-      <button
-        type="submit"
-        className="bg-green-500 text-white px-2 py-1 rounded-full ml-2"
-      >
-        {btnText ? btnText : "submit"}
-      </button>
     </form>
   );
 }

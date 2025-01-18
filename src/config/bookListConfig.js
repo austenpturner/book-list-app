@@ -1,6 +1,6 @@
 export const bookSearchControls = [
   {
-    label: "Book search",
+    label: "",
     id: "book-search",
     name: "bookSearch",
     placeholder: "Enter a book title...",

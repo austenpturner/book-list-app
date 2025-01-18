@@ -4,7 +4,7 @@ import { bookSearchControls } from "../config/bookListConfig";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addToRead } from "../store/slices/bookListSlice";
-import { id } from "common-tags";
+import { BsSearch } from "react-icons/bs";
 
 const initialState = {
   bookSearch: "",
@@ -41,7 +41,7 @@ export default function BookSearch() {
       }
       const result = await response.json();
       if (result) {
-        // console.log(result);
+        console.log(result.items.volumeInfo);
         setBookResults(result.items);
         setLoading(false);
       }
@@ -67,7 +67,7 @@ export default function BookSearch() {
         formData={searchInput}
         setFormData={handleSearchInput}
         onSubmit={handleSubmit}
-        btnText={"submit"}
+        btnIcon={<BsSearch />}
       />
       <ul>
         {loading ? (

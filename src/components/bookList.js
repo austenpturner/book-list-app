@@ -33,7 +33,7 @@ export default function BookList({ type }) {
 
   return (
     <div>
-      <h2>{type === "to-read" ? "Books to read" : "Books I've read"}</h2>
+      {/* <h2>{type === "to-read" ? "Books to read" : "Books I've read"}</h2> */}
       <ul>
         {books.map((book) => (
           <li key={book.id}>
