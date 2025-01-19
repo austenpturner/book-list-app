@@ -1,61 +1,49 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  toRead: [
-    {
-      id: 1,
-      title: "The Great Gatsby",
-    },
-  ],
-  haveRead: [
-    {
-      id: 2,
-      title: "The Catcher in the Rye",
-    },
-  ],
+  library: [],
 };
 
 const bookListSlice = createSlice({
   name: "bookList",
   initialState: initialState,
   reducers: {
-    addToRead(state, action) {
-      state.toRead.push(action.payload);
+    // addToReadList(state, action) {
+    //   state.readList.push(action.payload);
+    // },
+    // removeFromReadList(state, action) {
+    //   state.readList = state.readList.filter(
+    //     (book) => book.id !== action.payload
+    //   );
+    // },
+    addToLibrary(state, action) {
+      state.library.push(action.payload);
     },
-    removeFromToRead(state, action) {
-      state.toRead = state.toRead.filter((book) => book.id !== action.payload);
-    },
-    removeFromHaveRead(state, action) {
-      state.haveRead = state.haveRead.filter(
+    removeFromLibrary(state, action) {
+      state.library = state.library.filter(
         (book) => book.id !== action.payload
       );
     },
-    markAsRead(state, action) {
-      // console.log(action.payload);
+    // markAsRead(state, action) {
+    //   // console.log(action.payload);
 
-      const bookIndex = state.toRead.findIndex(
-        (book) => book.id === action.payload
-      );
-      if (bookIndex > -1) {
-        const [book] = state.toRead.splice(bookIndex, 1);
-        state.haveRead.push(book);
-      }
-    },
-    updateBookDetails(state, action) {
-      const { id, updates, list } = action.payload;
-      const targetList = state[list];
-      const book = targetList.find((book) => book.id === id);
-      if (book) Object.assign(book, updates);
-    },
+    //   const bookIndex = state.readList.findIndex(
+    //     (book) => book.id === action.payload
+    //   );
+    //   if (bookIndex > -1) {
+    //     const [book] = state.readList.splice(bookIndex, 1);
+    //     state.library.push(book);
+    //   }
+    // },
+    // updateBookDetails(state, action) {
+    //   const { id, updates, list } = action.payload;
+    //   const targetList = state[list];
+    //   const book = targetList.find((book) => book.id === id);
+    //   if (book) Object.assign(book, updates);
+    // },
   },
 });
 
-export const {
-  addToRead,
-  removeFromToRead,
-  removeFromHaveRead,
-  markAsRead,
-  updateBookDetails,
-} = bookListSlice.actions;
+export const { addToLibrary, removeFromLibrary } = bookListSlice.actions;
 
 export default bookListSlice.reducer;

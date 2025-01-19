@@ -1,3 +1,3 @@
 import "./src/styles/global.css";
-import wrapWithProvider from "./src/store/wrapper";
+import wrapWithProvider from "./wrapper";
 export const wrapRootElement = wrapWithProvider;

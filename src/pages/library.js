@@ -6,7 +6,7 @@ export default function Library() {
   return (
     <Layout>
       <BookList />
-      <BookList type={"to-read"} />
+      {/* <BookList type={"read-list"} /> */}
     </Layout>
   );
 }

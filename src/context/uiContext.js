@@ -1,7 +1,10 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { createContext, useReducer } from "react";
 import PropTypes from "prop-types";
 
-export const UiContext = createContext(null);
+export const UIContext = createContext(null);
+
+const OPEN_MODAL = "OPEN_MODAL";
+const BOOK_SEARCH_SUBMITTED = "BOOK_SEARCH_SUBMITTED";
 
 function uiReducer(state, action) {
   switch (action.type) {
@@ -10,6 +13,11 @@ function uiReducer(state, action) {
         ...state,
         openModal: action.payload,
       };
+    case BOOK_SEARCH_SUBMITTED:
+      return {
+        ...state,
+        bookSearchSubmitted: action.payload,
+      };
     default:
       return state;
   }
@@ -17,19 +25,20 @@ function uiReducer(state, action) {
 
 const initialState = {
   openModal: false,
+  bookSearchSubmitted: false,
 };
 
 export default function UIProvider({ children }) {
   const [state, uiDispatch] = useReducer(uiReducer, initialState);
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log(state);
+  // }, [state]);
 
   return (
-    <UiContext.Provider value={{ state, uiDispatch }}>
+    <UIContext.Provider value={{ state, uiDispatch }}>
       {children}
-    </UiContext.Provider>
+    </UIContext.Provider>
   );
 }
 

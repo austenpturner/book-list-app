@@ -1,16 +1,32 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Layout from "../components/layout";
 // import BookList from "../components/bookList";
 // import Modal from "../components/modal";
 // import { useState } from "react";
 import BookSearch from "../components/bookSearch";
+import { UIContext } from "../context/uiContext";
 
 export default function Search() {
-  //   const [open, setOpen] = useState(false);
+  const { state } = useContext(UIContext);
+
+  console.log(state.bookSearchSubmitted);
+
   return (
     <Layout>
-      <div className="absolute top-[20%] m-auto -ml-20 w-full">
-        <h2 className="text-blue-600 text-xl text-center mb-6">book search</h2>
+      <div
+        className={`absolute m-auto -ml-20 w-full transition-top ease-in-out delay-100 ${
+          state.bookSearchSubmitted ? "top-20" : "top-[20%]"
+        } `}
+      >
+        <h2
+          className={`${
+            state.bookSearchSubmitted
+              ? "hidden"
+              : "text-blue-600 text-xl text-center mb-6"
+          } `}
+        >
+          book search
+        </h2>
         <BookSearch />
       </div>
     </Layout>

@@ -1,10 +1,11 @@
-import * as React from "react";
+import React, { useContext, useState } from "react";
 import CommonForm from "./commonForm";
 import { bookSearchControls } from "../config/bookListConfig";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addToRead } from "../store/slices/bookListSlice";
+// import { useDispatch } from "react-redux";
+// import { addToRead } from "../store/slices/bookListSlice";
 import { BsSearch } from "react-icons/bs";
+import { UIContext } from "../context/uiContext";
+import BookList from "./bookList";
 
 const initialState = {
   bookSearch: "",
@@ -16,7 +17,8 @@ export default function BookSearch() {
   const [searchInput, setSearchInput] = useState(initialState);
   const [bookResults, setBookResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+  const { uiDispatch } = useContext(UIContext);
+  // const dispatch = useDispatch();
 
   function handleSearchInput(e) {
     setSearchInput({
@@ -33,6 +35,7 @@ export default function BookSearch() {
     // console.log(url);
 
     setLoading(true);
+    uiDispatch({ type: "BOOK_SEARCH_SUBMITTED", payload: true });
 
     try {
       const response = await fetch(url);
@@ -51,14 +54,14 @@ export default function BookSearch() {
     }
   }
 
-  function handleAddBook(bookData) {
-    // console.log(bookData);
-    const book = {
-      id: bookData.id,
-      title: bookData.volumeInfo.title,
-    };
-    dispatch(addToRead(book));
-  }
+  // function handleAddBook(bookData) {
+  //   // console.log(bookData);
+  //   const book = {
+  //     id: bookData.id,
+  //     title: bookData.volumeInfo.title,
+  //   };
+  //   dispatch(addToRead(book));
+  // }
 
   return (
     <div>
@@ -73,7 +76,14 @@ export default function BookSearch() {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          bookResults.map((book) => {
+          <BookList type="search" bookSearch={bookResults} />
+        )}
+      </ul>
+    </div>
+  );
+}
+
+/* bookResults.map((book) => {
             const { title } = book.volumeInfo;
             const { thumbnail } = book.volumeInfo.imageLinks;
             return (
@@ -88,9 +98,4 @@ export default function BookSearch() {
                 </button>
               </li>
             );
-          })
-        )}
-      </ul>
-    </div>
-  );
-}
+          }) */
