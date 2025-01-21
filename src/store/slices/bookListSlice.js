@@ -8,14 +8,6 @@ const bookListSlice = createSlice({
   name: "bookList",
   initialState: initialState,
   reducers: {
-    // addToReadList(state, action) {
-    //   state.readList.push(action.payload);
-    // },
-    // removeFromReadList(state, action) {
-    //   state.readList = state.readList.filter(
-    //     (book) => book.id !== action.payload
-    //   );
-    // },
     addToLibrary(state, action) {
       state.library.push(action.payload);
     },

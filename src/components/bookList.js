@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLibrary, removeFromLibrary } from "../store/slices/bookListSlice";
+import { FaCirclePlus } from "react-icons/fa6";
+import { MdCheckBoxOutlineBlank } from "react-icons/md";
 
 export default function BookList({ type, bookSearch = [] }) {
   const dispatch = useDispatch();
-
   const library = useSelector((state) => state.bookList.library);
+
   let books;
   if (type === "library") {
     books = library;
@@ -24,22 +26,69 @@ export default function BookList({ type, bookSearch = [] }) {
     dispatch(addToLibrary(book.id));
   }
 
-  useEffect(() => {
-    console.log(bookSearch);
-  }, [bookSearch]);
+  function getButtonStyles(type) {
+    const typeStyles = [
+      "text-white",
+      "px-2",
+      "py-1",
+      "rounded-full",
+      "absolute",
+      "top-1.5",
+      "right-1",
+      "p-0",
+      "background-transparent",
+      "cursor-pointer",
+      "drop-shadow-lg",
+      "hover:scale-105",
+    ];
+    // switch (type) {
+    //   case "library":
+    //     typeStyles.push("bg-red-500");
+    //     break;
+    //   case "search":
+    //     typeStyles.push("bg-blue-500");
+    //   default:
+    //     break;
+    // }
+    return typeStyles.join(" ");
+  }
 
-  return (
-    <div>
-      <ul className="ml-20 p-5 pr-2.5 flex flex-wrap gap-2.5">
-        {books.map((book) => (
-          <li key={book.id} className="w-[calc(20%-10px)]">
+  function getButtonIcon(type) {
+    switch (type) {
+      case "library":
+        return <MdCheckBoxOutlineBlank className="h-9 w-9" />;
+      case "search":
+        return <FaCirclePlus className="h-9 w-9" />;
+      default:
+        return;
+    }
+  }
+
+  const bookList = (
+    <ul className="md:ml-20 p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-5">
+      {books.map((book) => (
+        <li key={book.id} className="grid auto-rows-max gap-1">
+          <div className="h-72 sm:h-80 md:h-64 relative overflow-hidden ">
+            <button
+              className={getButtonStyles(type)}
+              onClick={
+                type === "library"
+                  ? () => handleRemoveBook(book.id)
+                  : () => handleAddToLibrary(book)
+              }
+            >
+              {getButtonIcon(type)}
+            </button>
             <img
               src={book.volumeInfo.imageLinks.thumbnail}
               alt="book cover"
-              className="w-full"
+              className="object-fill w-full"
             />
-            <h3>{book.volumeInfo.title}</h3>
-            <p>
+          </div>
+
+          <div className="self-start text-center">
+            <h3 className="font-semibold">{book.volumeInfo.title}</h3>
+            <p className="text-sm">
               {`by `}
               {book.volumeInfo.authors.map((author, index) => (
                 <span key={index}>
@@ -48,24 +97,11 @@ export default function BookList({ type, bookSearch = [] }) {
                 </span>
               ))}
             </p>
-            {type === "library" ? (
-              <button
-                className="bg-red-500 text-white px-2 py-1 rounded-full"
-                onClick={() => handleRemoveBook(book.id)}
-              >
-                remove
-              </button>
-            ) : (
-              <button
-                className="bg-blue-500 text-white px-2 py-1 rounded-full"
-                onClick={() => handleAddToLibrary(book)}
-              >
-                add to library
-              </button>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
+
+  return <div>{books.length === 0 ? <p>No books found</p> : bookList}</div>;
 }

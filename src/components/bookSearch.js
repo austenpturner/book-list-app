@@ -1,8 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CommonForm from "./commonForm";
 import { bookSearchControls } from "../config/bookListConfig";
-// import { useDispatch } from "react-redux";
-// import { addToRead } from "../store/slices/bookListSlice";
 import { BsSearch } from "react-icons/bs";
 import { UIContext } from "../context/uiContext";
 import BookList from "./bookList";
@@ -18,7 +16,6 @@ export default function BookSearch() {
   const [bookResults, setBookResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const { uiDispatch } = useContext(UIContext);
-  // const dispatch = useDispatch();
 
   function handleSearchInput(e) {
     setSearchInput({
@@ -32,7 +29,6 @@ export default function BookSearch() {
     // console.log(searchInput);
 
     const url = `https://www.googleapis.com/books/v1/volumes?q=${searchInput.bookSearch}&key=${key}`;
-    // console.log(url);
 
     setLoading(true);
     uiDispatch({ type: "BOOK_SEARCH_SUBMITTED", payload: true });
@@ -44,8 +40,16 @@ export default function BookSearch() {
       }
       const result = await response.json();
       if (result) {
-        console.log(result.items.volumeInfo);
-        setBookResults(result.items);
+        console.log(result.items);
+        const filteredBooks = result.items.filter(
+          (item) =>
+            item.volumeInfo.authors &&
+            item.volumeInfo.authors.length > 0 &&
+            item.volumeInfo.imageLinks &&
+            item.volumeInfo.imageLinks.thumbnail
+        );
+        console.log(filteredBooks);
+        setBookResults(filteredBooks);
         setLoading(false);
       }
     } catch (error) {
@@ -54,14 +58,19 @@ export default function BookSearch() {
     }
   }
 
-  // function handleAddBook(bookData) {
-  //   // console.log(bookData);
-  //   const book = {
-  //     id: bookData.id,
-  //     title: bookData.volumeInfo.title,
-  //   };
-  //   dispatch(addToRead(book));
-  // }
+  useEffect(() => {
+    console.log(bookResults);
+  }, [bookResults]);
+
+  const bookList = (
+    <ul>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <BookList type="search" bookSearch={bookResults} />
+      )}
+    </ul>
+  );
 
   return (
     <div>
@@ -72,30 +81,7 @@ export default function BookSearch() {
         onSubmit={handleSubmit}
         btnIcon={<BsSearch />}
       />
-      <ul>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <BookList type="search" bookSearch={bookResults} />
-        )}
-      </ul>
+      {bookResults.length > 0 && bookList}
     </div>
   );
 }
-
-/* bookResults.map((book) => {
-            const { title } = book.volumeInfo;
-            const { thumbnail } = book.volumeInfo.imageLinks;
-            return (
-              <li key={book.id}>
-                <img src={thumbnail} alt="book cover" />
-                {title}
-                <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded-full"
-                  onClick={() => handleAddBook(book)}
-                >
-                  add book
-                </button>
-              </li>
-            );
-          }) */

@@ -83,7 +83,7 @@ export default function CommonForm({
         return (
           <div
             key={formControl.id}
-            className="border border-slate-900 rounded py-1 px-1 w-1/2 flex justify-between"
+            className="border border-slate-900 rounded py-1 px-1 w-4/5 md:w-1/2 flex justify-between"
           >
             {renderFormElement(formControl, formData)}
             <button type="submit" className="px-2 py-1 rounded">

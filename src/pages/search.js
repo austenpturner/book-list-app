@@ -14,7 +14,7 @@ export default function Search() {
   return (
     <Layout>
       <div
-        className={`absolute m-auto -ml-20 w-full transition-top ease-in-out delay-100 ${
+        className={`absolute m-auto md:-ml-20 w-full transition-top ease-in-out delay-100 ${
           state.bookSearchSubmitted ? "top-20" : "top-[20%]"
         } `}
       >
@@ -22,7 +22,7 @@ export default function Search() {
           className={`${
             state.bookSearchSubmitted
               ? "hidden"
-              : "text-blue-600 text-xl text-center mb-6"
+              : "text-blue-600 text-lg md:text-xl text-center mb-6"
           } `}
         >
           book search

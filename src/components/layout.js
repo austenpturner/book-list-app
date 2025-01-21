@@ -7,7 +7,9 @@ const Layout = ({ children }) => {
     <>
       <Header />
       <Nav />
-      <main className="ml-20 mt-14 min-h-[calc(100vh - 56px)]">{children}</main>
+      <main className="md:ml-20 mt-14 min-h-[calc(100vh - 56px)]">
+        {children}
+      </main>
     </>
   );
 };
