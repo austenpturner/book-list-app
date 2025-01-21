@@ -1,8 +1,5 @@
 import React, { useContext } from "react";
-import Layout from "../components/layout";
-// import BookList from "../components/bookList";
-// import Modal from "../components/modal";
-// import { useState } from "react";
+import Layout from "../layouts/index";
 import BookSearch from "../components/bookSearch";
 import { UIContext } from "../context/uiContext";
 

@@ -9,6 +9,7 @@ const bookListSlice = createSlice({
   initialState: initialState,
   reducers: {
     addToLibrary(state, action) {
+      console.log(action.payload);
       state.library.push(action.payload);
     },
     removeFromLibrary(state, action) {

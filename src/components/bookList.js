@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLibrary, removeFromLibrary } from "../store/slices/bookListSlice";
 import { FaCirclePlus } from "react-icons/fa6";
@@ -7,6 +7,8 @@ import { MdCheckBoxOutlineBlank } from "react-icons/md";
 export default function BookList({ type, bookSearch = [] }) {
   const dispatch = useDispatch();
   const library = useSelector((state) => state.bookList.library);
+
+  console.log(type);
 
   let books;
   if (type === "library") {
@@ -23,7 +25,7 @@ export default function BookList({ type, bookSearch = [] }) {
 
   function handleAddToLibrary(book) {
     // console.log(book);
-    dispatch(addToLibrary(book.id));
+    dispatch(addToLibrary(book));
   }
 
   function getButtonStyles(type) {
@@ -63,6 +65,10 @@ export default function BookList({ type, bookSearch = [] }) {
         return;
     }
   }
+
+  useEffect(() => {
+    console.log(library);
+  }, [library]);
 
   const bookList = (
     <ul className="md:ml-20 p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-5">

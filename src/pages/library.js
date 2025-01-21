@@ -1,12 +1,11 @@
 import * as React from "react";
-import Layout from "../components/layout";
+import Layout from "../layouts/index";
 import BookList from "../components/bookList";
 
 export default function Library() {
   return (
     <Layout>
-      <BookList />
-      {/* <BookList type={"read-list"} /> */}
+      <BookList type="library" />
     </Layout>
   );
 }
