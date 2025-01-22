@@ -3,15 +3,25 @@ import PropTypes from "prop-types";
 
 export const UIContext = createContext(null);
 
-const OPEN_MODAL = "OPEN_MODAL";
+const TOGGLE_MODAL = "TOGGLE_MODAL";
 const BOOK_SEARCH_SUBMITTED = "BOOK_SEARCH_SUBMITTED";
+const TOGGLE_OVERLAY = "TOGGLE_OVERLAY";
 
 function uiReducer(state, action) {
   switch (action.type) {
-    case OPEN_MODAL:
+    case TOGGLE_MODAL:
       return {
         ...state,
-        openModal: action.payload,
+        modal: {
+          isOpen: !state.modal.isOpen,
+          content: action.payload.content,
+          type: action.payload.type,
+        },
+      };
+    case TOGGLE_OVERLAY:
+      return {
+        ...state,
+        overlayVisible: action.payload,
       };
     case BOOK_SEARCH_SUBMITTED:
       return {
@@ -24,8 +34,13 @@ function uiReducer(state, action) {
 }
 
 const initialState = {
-  openModal: false,
+  modal: {
+    isOpen: false,
+    content: null,
+    type: null,
+  },
   bookSearchSubmitted: false,
+  overlayVisible: false,
 };
 
 export default function UIProvider({ children }) {

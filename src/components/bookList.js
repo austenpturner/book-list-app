@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLibrary, removeFromLibrary } from "../store/slices/bookListSlice";
 import { FaCirclePlus } from "react-icons/fa6";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
 import { IoLibrary } from "react-icons/io5";
 import { Link } from "gatsby";
+import { UIContext } from "../context/uiContext";
 
 export default function BookList({ type, bookSearch = [] }) {
+  const { uiDispatch } = useContext(UIContext);
   const dispatch = useDispatch();
   const library = useSelector((state) => state.bookList.library);
 
@@ -33,6 +35,7 @@ export default function BookList({ type, bookSearch = [] }) {
   }
 
   function handleAddToLibrary(book) {
+    uiDispatch({ type: "TOGGLE_MODAL", payload: { type: "add" } });
     dispatch(addToLibrary(book));
   }
 
