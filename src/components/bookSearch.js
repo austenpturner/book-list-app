@@ -4,16 +4,15 @@ import { bookSearchControls } from "../config/bookListConfig";
 import { BsSearch } from "react-icons/bs";
 import { UIContext } from "../context/uiContext";
 import BookList from "./bookList";
-
-const initialState = {
-  bookSearch: "",
-};
+import { useSearch } from "../context/searchContext";
 
 const key = process.env.GOOGLE_API_KEY;
 
 export default function BookSearch() {
-  const [searchInput, setSearchInput] = useState(initialState);
-  const [bookResults, setBookResults] = useState([]);
+  // const [searchInput, setSearchInput] = useState(initialState);
+  // const [bookResults, setBookResults] = useState([]);
+  const { searchInput, setSearchInput, searchResults, setSearchResults } =
+    useSearch();
   const [loading, setLoading] = useState(false);
   const { uiDispatch } = useContext(UIContext);
 
@@ -40,7 +39,7 @@ export default function BookSearch() {
       }
       const result = await response.json();
       if (result) {
-        console.log(result.items);
+        // console.log(result.items);
         const filteredBooks = result.items.filter(
           (item) =>
             item.volumeInfo.authors &&
@@ -48,26 +47,28 @@ export default function BookSearch() {
             item.volumeInfo.imageLinks &&
             item.volumeInfo.imageLinks.thumbnail
         );
-        console.log(filteredBooks);
-        setBookResults(filteredBooks);
-        setLoading(false);
+        // console.log(filteredBooks);
+        setSearchResults(filteredBooks);
+        // setLoading(false);
       }
     } catch (error) {
       console.log(error);
+    } finally {
       setLoading(false);
     }
   }
 
   useEffect(() => {
-    console.log(bookResults);
-  }, [bookResults]);
+    console.log("results:", searchResults);
+    console.log("search input:", searchInput);
+  }, [searchResults, searchInput]);
 
   const bookList = (
     <ul>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <BookList type="search" bookSearch={bookResults} />
+        <BookList type="search" bookSearch={searchResults} />
       )}
     </ul>
   );
@@ -81,7 +82,7 @@ export default function BookSearch() {
         onSubmit={handleSubmit}
         btnIcon={<BsSearch />}
       />
-      {bookResults.length > 0 && bookList}
+      {searchResults.length > 0 && bookList}
     </div>
   );
 }

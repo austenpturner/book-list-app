@@ -9,7 +9,7 @@ export default function BookList({ type, bookSearch = [] }) {
   const dispatch = useDispatch();
   const library = useSelector((state) => state.bookList.library);
 
-  console.log(type);
+  // console.log(type);
 
   let books;
   if (type === "library") {
@@ -86,29 +86,28 @@ export default function BookList({ type, bookSearch = [] }) {
             >
               {getButtonIcon(type)}
             </button>
-            <img
-              src={book.volumeInfo.imageLinks.thumbnail}
-              alt="book cover"
-              className="object-fill w-full"
-            />
-            <button>
-              <Link to={`/search/book-details/${book.id}`}>
-                see book details
-              </Link>
-            </button>
+            <Link to={`/search/book-details/${book.id}`}>
+              <img
+                src={book.volumeInfo.imageLinks.thumbnail}
+                alt="book cover"
+                className="object-fill w-full"
+              />
+            </Link>
           </div>
 
           <div className="self-start text-center">
-            <h3 className="font-semibold">{book.volumeInfo.title}</h3>
-            <p className="text-sm">
-              {`by `}
-              {book.volumeInfo.authors.map((author, index) => (
-                <span key={index}>
-                  {author}
-                  {index < book.volumeInfo.authors.length - 1 && ", "}
-                </span>
-              ))}
-            </p>
+            <Link to={`/search/book-details/${book.id}`}>
+              <h3 className="font-semibold">{book.volumeInfo.title}</h3>
+              <p className="text-sm">
+                {`by `}
+                {book.volumeInfo.authors.map((author, index) => (
+                  <span key={index}>
+                    {author}
+                    {index < book.volumeInfo.authors.length - 1 && ", "}
+                  </span>
+                ))}
+              </p>
+            </Link>
           </div>
         </li>
       ))}

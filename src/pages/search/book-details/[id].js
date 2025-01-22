@@ -16,7 +16,7 @@ export default function BookDetailsPage({ params }) {
           `https://www.googleapis.com/books/v1/volumes/${id}`
         );
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setBook(data);
         setLoading(false);
       } catch (error) {
