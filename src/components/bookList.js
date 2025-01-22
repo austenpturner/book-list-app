@@ -96,7 +96,13 @@ export default function BookList({ type, bookSearch = [] }) {
           </div>
 
           <div className="self-start text-center">
-            <Link to={`/search/book-details/${book.id}`}>
+            <Link
+              to={
+                type === "search"
+                  ? `/search/book-details/${book.id}`
+                  : `/library/book-details/${book.id}`
+              }
+            >
               <h3 className="font-semibold">{book.volumeInfo.title}</h3>
               <p className="text-sm">
                 {`by `}

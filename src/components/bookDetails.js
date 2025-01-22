@@ -3,6 +3,7 @@ import DOMPurify from "dompurify";
 import { useDispatch } from "react-redux";
 import { addToLibrary } from "../store/slices/bookListSlice";
 import { FaCirclePlus } from "react-icons/fa6";
+import { extractUniqueCategories } from "../util/extractUniqueCategories";
 
 export default function BookDetails({ book }) {
   const dispatch = useDispatch();
@@ -23,17 +24,24 @@ export default function BookDetails({ book }) {
     }
   }
 
+  function getUniqueCategories() {
+    if (!book.volumeInfo.categories) {
+      return "No categories found";
+    } else {
+      const uniqueCategories = extractUniqueCategories(
+        book.volumeInfo.categories
+      );
+      return uniqueCategories;
+    }
+  }
+
   function getButtonStyles(type) {
     const typeStyles = [
       "text-white",
-      "px-2",
-      "py-1",
-      "rounded-full",
       "absolute",
       "top-1.5",
       "right-1",
       "p-0",
-      "background-transparent",
       "cursor-pointer",
       "drop-shadow-lg",
       "hover:scale-105",
@@ -50,16 +58,18 @@ export default function BookDetails({ book }) {
     return typeStyles.join(" ");
   }
 
-  //   console.log(book);
+  // console.log(book.volumeInfo.categories);
+  // const result = extractUniqueCategories(book.volumeInfo.categories);
+  // console.log(result);
 
   return (
-    <div className="p-14 grid grid-cols-3 gap-5">
+    <div className="p-14 mx-auto grid grid-cols-3 gap-6 max-w-5xl">
       <div className="relative col-span-1">
         <button
           className={getButtonStyles("add")}
           onClick={() => handleAddToLibrary()}
         >
-          <FaCirclePlus />
+          <FaCirclePlus className="h-8 w-8" />
         </button>
         <img
           src={book.volumeInfo.imageLinks.thumbnail}
@@ -68,8 +78,8 @@ export default function BookDetails({ book }) {
         />
       </div>
       <div className="col-span-2">
-        <div>
-          <h3>{book.volumeInfo.title}</h3>
+        <div className="mb-5">
+          <h3 className="text-3xl font-semibold">{book.volumeInfo.title}</h3>
           <p className="text-sm">
             {`by `}
             {book.volumeInfo.authors.map((author, index) => (
@@ -80,21 +90,27 @@ export default function BookDetails({ book }) {
             ))}
           </p>
         </div>
-        <div>
-          <h4>Categories:</h4>
-          {book.volumeInfo.categories ? (
-            <ul>
-              {book.volumeInfo.categories.map((category, index) => (
-                <li key={index}>{category}</li>
+        <div className="mb-5">
+          <h5 className="mb-2.5 text-lg font-light">Categories:</h5>
+          {book.volumeInfo.categories && (
+            <ul className="flex flex-wrap gap-1.5">
+              {getUniqueCategories().map((category, index) => (
+                <li
+                  key={index}
+                  className="text-sm text-white bg-sky-400 p-1.5 rounded-md mb-1"
+                >
+                  {category}
+                </li>
               ))}
             </ul>
-          ) : (
-            <p>no categories found</p>
           )}
         </div>
         <div>
-          <h4>Description:</h4>
-          <p dangerouslySetInnerHTML={{ __html: getDescription() }} />
+          <h5 className="mb-2.5 text-lg font-light">Description:</h5>
+          <p
+            className="text-base leading-6"
+            dangerouslySetInnerHTML={{ __html: getDescription() }}
+          />
         </div>
       </div>
     </div>

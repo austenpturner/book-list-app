@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "@reach/router";
 import BookDetails from "../../../components/bookDetails";
+import { FaCircleArrowLeft } from "react-icons/fa6";
 
 export default function BookDetailsPage({ params }) {
   const id = params[`id`];
@@ -38,8 +39,10 @@ export default function BookDetailsPage({ params }) {
 
   return (
     <div>
-      <button>
-        <Link to="/search">Back to Search</Link>
+      <button className="mt-2.5 ml-2.5">
+        <Link to="/search">
+          <FaCircleArrowLeft className="h-8 w-8 text-slate-800 drop-shadow-lg hover:scale-105" />
+        </Link>
       </button>
       {book !== null && !loading && <BookDetails book={book} />}
     </div>
