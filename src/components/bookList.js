@@ -3,19 +3,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToLibrary, removeFromLibrary } from "../store/slices/bookListSlice";
 import { FaCirclePlus } from "react-icons/fa6";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
+import { IoLibrary } from "react-icons/io5";
 import { Link } from "gatsby";
 
 export default function BookList({ type, bookSearch = [] }) {
   const dispatch = useDispatch();
   const library = useSelector((state) => state.bookList.library);
 
-  // console.log(type);
+  console.log(library);
 
   let books;
   if (type === "library") {
     books = library;
   } else {
     books = bookSearch;
+  }
+
+  function handleFindInLibrary(id) {
+    const match = library.findIndex((book) => book.id === id);
+    if (match !== -1) {
+      return true;
+    }
   }
 
   function handleRemoveBook(id) {
@@ -25,43 +33,40 @@ export default function BookList({ type, bookSearch = [] }) {
   }
 
   function handleAddToLibrary(book) {
-    // console.log(book);
     dispatch(addToLibrary(book));
   }
 
-  function getButtonStyles(type) {
-    const typeStyles = [
-      "text-white",
-      "px-2",
-      "py-1",
-      "rounded-full",
-      "absolute",
-      "top-1.5",
-      "right-1",
-      "p-0",
-      "background-transparent",
-      "cursor-pointer",
-      "drop-shadow-lg",
-      "hover:scale-105",
-    ];
-    // switch (type) {
-    //   case "library":
-    //     typeStyles.push("bg-red-500");
-    //     break;
-    //   case "search":
-    //     typeStyles.push("bg-blue-500");
-    //   default:
-    //     break;
-    // }
-    return typeStyles.join(" ");
-  }
+  const buttonStyles =
+    "text-white px-2 py-1 rounded-full absolute top-1.5 right-1 p-0 background-transparent cursor-pointer drop-shadow-lg hover:scale-105";
 
-  function getButtonIcon(type) {
+  function getButtonType(type, book) {
     switch (type) {
       case "library":
-        return <MdCheckBoxOutlineBlank className="h-9 w-9" />;
+        return (
+          <button
+            className={buttonStyles}
+            onClick={() => handleRemoveBook(book.id)}
+          >
+            <MdCheckBoxOutlineBlank className="h-9 w-9" />
+          </button>
+        );
       case "search":
-        return <FaCirclePlus className="h-9 w-9" />;
+        if (handleFindInLibrary(book.id)) {
+          return (
+            <button className={buttonStyles}>
+              <IoLibrary className="h-9 w-9" />
+            </button>
+          );
+        } else {
+          return (
+            <button
+              className={buttonStyles}
+              onClick={() => handleAddToLibrary(book)}
+            >
+              <FaCirclePlus className="h-9 w-9" />
+            </button>
+          );
+        }
       default:
         return;
     }
@@ -76,16 +81,7 @@ export default function BookList({ type, bookSearch = [] }) {
       {books.map((book) => (
         <li key={book.id} className="grid auto-rows-max gap-1">
           <div className="h-72 sm:h-80 md:h-64 relative overflow-hidden ">
-            <button
-              className={getButtonStyles(type)}
-              onClick={
-                type === "library"
-                  ? () => handleRemoveBook(book.id)
-                  : () => handleAddToLibrary(book)
-              }
-            >
-              {getButtonIcon(type)}
-            </button>
+            {getButtonType(type, book)}
             <Link to={`/search/book-details/${book.id}`}>
               <img
                 src={book.volumeInfo.imageLinks.thumbnail}
