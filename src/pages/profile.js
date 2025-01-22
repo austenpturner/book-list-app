@@ -1,11 +1,10 @@
-import * as React from "react";
-import Layout from "../layouts/index";
+import React from "react";
 
 export default function Profile() {
   return (
-    <Layout>
+    <div className="mt-14 min-h-[calc(100vh - 56px)]">
       <h1>profile</h1>
-    </Layout>
+    </div>
   );
 }
 

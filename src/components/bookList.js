@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToLibrary, removeFromLibrary } from "../store/slices/bookListSlice";
 import { FaCirclePlus } from "react-icons/fa6";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
+import { Link } from "gatsby";
 
 export default function BookList({ type, bookSearch = [] }) {
   const dispatch = useDispatch();
@@ -90,6 +91,11 @@ export default function BookList({ type, bookSearch = [] }) {
               alt="book cover"
               className="object-fill w-full"
             />
+            <button>
+              <Link to={`/search/book-details/${book.id}`}>
+                see book details
+              </Link>
+            </button>
           </div>
 
           <div className="self-start text-center">

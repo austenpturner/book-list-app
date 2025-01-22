@@ -1,12 +1,11 @@
-import * as React from "react";
-import Layout from "../layouts/index";
+import React from "react";
 import BookList from "../components/bookList";
 
 export default function Library() {
   return (
-    <Layout>
+    <div className="mt-14 min-h-[calc(100vh - 56px)]">
       <BookList type="library" />
-    </Layout>
+    </div>
   );
 }
 
