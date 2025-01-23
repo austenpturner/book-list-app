@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { MdCheckBoxOutlineBlank, MdOutlineCheckBox } from "react-icons/md";
 import { GoBook } from "react-icons/go";
 import { Link } from "gatsby";
+import AuthorsList from "./authorsList";
 
 export default function LibraryList() {
   //   const dispatch = useDispatch();
@@ -59,15 +60,7 @@ export default function LibraryList() {
           <div className="self-start text-center">
             <Link to={`/library/book-details/${book.libraryId}`}>
               <h3 className="font-semibold">{book.googleBooksData.title}</h3>
-              <p className="text-sm">
-                {`by `}
-                {book.googleBooksData.authors.map((author, index) => (
-                  <span key={index}>
-                    {author}
-                    {index < book.googleBooksData.authors.length - 1 && ", "}
-                  </span>
-                ))}
-              </p>
+              <AuthorsList authors={book.googleBooksData.authors} />
             </Link>
           </div>
         </li>

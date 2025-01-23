@@ -5,6 +5,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { IoLibrary } from "react-icons/io5";
 import { Link } from "gatsby";
 import { UIContext } from "../context/uiContext";
+import AuthorsList from "./authorsList";
 
 export default function BookList({ books }) {
   const { uiDispatch } = useContext(UIContext);
@@ -89,7 +90,8 @@ export default function BookList({ books }) {
           <div className="self-start text-center">
             <Link to={`/search/book-details/${book.id}`}>
               <h3 className="font-semibold">{book.volumeInfo.title}</h3>
-              <p className="text-sm">
+              <AuthorsList authors={book.volumeInfo.authors} />
+              {/* <p className="text-sm">
                 {`by `}
                 {book.volumeInfo.authors.map((author, index) => (
                   <span key={index}>
@@ -97,7 +99,7 @@ export default function BookList({ books }) {
                     {index < book.volumeInfo.authors.length - 1 && ", "}
                   </span>
                 ))}
-              </p>
+              </p> */}
             </Link>
           </div>
         </li>
