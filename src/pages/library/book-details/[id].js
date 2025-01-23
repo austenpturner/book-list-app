@@ -3,6 +3,7 @@ import { Link } from "@reach/router";
 // import BookDetails from "../../../components/bookDetails";
 import { FaCircleArrowLeft } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import BookDetails from "../../../components/bookDetails";
 
 export default function BookDetailsPage({ params }) {
   const id = params[`id`];
@@ -49,8 +50,10 @@ export default function BookDetailsPage({ params }) {
           <FaCircleArrowLeft className="h-8 w-8 text-slate-800 drop-shadow-lg hover:scale-105" />
         </Link>
       </button>
-      {/* {book !== null && !loading && <BookDetails book={book} />} */}
-      <h2>library book details</h2>
+      {book !== null && !loading && (
+        <BookDetails book={book} location="library" />
+      )}
+      {/* <h2>library book details</h2> */}
     </div>
   );
 }

@@ -44,7 +44,9 @@ export default function BookDetailsPage({ params }) {
           <FaCircleArrowLeft className="h-8 w-8 text-slate-800 drop-shadow-lg hover:scale-105" />
         </Link>
       </button>
-      {book !== null && !loading && <BookDetails book={book} />}
+      {book !== null && !loading && (
+        <BookDetails book={book} location="search" />
+      )}
     </div>
   );
 }
