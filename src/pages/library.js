@@ -1,10 +1,10 @@
 import React from "react";
-import BookList from "../components/bookList";
+import LibraryList from "../components/libraryList";
 
 export default function Library() {
   return (
     <div className="mt-14 min-h-[calc(100vh - 56px)]">
-      <BookList type="library" />
+      <LibraryList />
     </div>
   );
 }

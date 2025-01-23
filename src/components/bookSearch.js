@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import CommonForm from "./commonForm";
 import { bookSearchControls } from "../config/bookListConfig";
 import { BsSearch } from "react-icons/bs";
@@ -58,19 +58,13 @@ export default function BookSearch() {
     }
   }
 
-  useEffect(() => {
-    console.log("results:", searchResults);
-    console.log("search input:", searchInput);
-  }, [searchResults, searchInput]);
+  // useEffect(() => {
+  //   console.log("results:", searchResults);
+  //   console.log("search input:", searchInput);
+  // }, [searchResults, searchInput]);
 
   const bookList = (
-    <ul>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <BookList type="search" bookSearch={searchResults} />
-      )}
-    </ul>
+    <ul>{loading ? <p>Loading...</p> : <BookList books={searchResults} />}</ul>
   );
 
   return (

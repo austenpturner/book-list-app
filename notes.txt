@@ -26,7 +26,6 @@ REQUIREMENTS:
         i. library
         ii. read list
         iii. favorites (anything rated 4+ starts)
-        iv. top-five (ranked from 1-5)
     - user profile
         i. user slice
 * Firebase for user authentication and accounts
@@ -144,7 +143,6 @@ PAGES:
             - currently reading (?)
             - finished
             - favorites
-            - top five
         ii. sort drop down
             - all books
                 i. date added (to library)
@@ -162,12 +160,6 @@ PAGES:
                 iv. rating
                 v. date finished
             - favorites
-                i. date added (to library)
-                ii. by title
-                iii. by author
-                iv. rating
-                v. date finished
-            - top five
                 i. date added (to library)
                 ii. by title
                 iii. by author
