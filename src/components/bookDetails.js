@@ -5,7 +5,6 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { normalizeBookDetails, createLibraryObject } from "../util/bookUtils";
 import { IoLibrary } from "react-icons/io5";
 import { UIContext } from "../context/uiContext";
-import AuthorsList from "./authorsList";
 import CategoriesList from "./categoriesList";
 import BookDescription from "./bookDescription";
 
@@ -20,8 +19,12 @@ export default function BookDetails({ book, location }) {
   }
 
   function handleAddToLibrary(book) {
-    uiDispatch({ type: "TOGGLE_MODAL", payload: { type: "add" } });
-    dispatch(addToLibrary(createLibraryObject(book)));
+    const libraryBook = createLibraryObject(book);
+    uiDispatch({
+      type: "TOGGLE_MODAL",
+      payload: { type: "add", content: libraryBook },
+    });
+    dispatch(addToLibrary(libraryBook));
   }
 
   const buttonStyles =
@@ -51,7 +54,7 @@ export default function BookDetails({ book, location }) {
       <div className="col-span-2">
         <div className="mb-5">
           <h3 className="text-3xl font-semibold">{bookDetails.title}</h3>
-          <AuthorsList authors={bookDetails.authors} />
+          <p>{bookDetails.authors.join(", ")}</p>
         </div>
         {bookDetails.categories && (
           <CategoriesList categories={bookDetails.categories} />

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { UIContext } from "../context/uiContext";
+import ActionModal from "./actionModal";
 
 export default function Modal() {
   const { state, uiDispatch } = useContext(UIContext);
-  const { isOpen, type } = state.modal;
+  const { isOpen, type, content } = state.modal;
 
   function handleCloseModal() {
     uiDispatch({ type: "TOGGLE_MODAL", payload: {} });
@@ -12,7 +13,7 @@ export default function Modal() {
   function renderModalContent() {
     switch (type) {
       case "add":
-        return <p>Book added to your library!</p>;
+        return <ActionModal action={type} book={content} />;
       default:
         return null;
     }

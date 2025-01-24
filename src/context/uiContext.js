@@ -10,6 +10,7 @@ const TOGGLE_OVERLAY = "TOGGLE_OVERLAY";
 function uiReducer(state, action) {
   switch (action.type) {
     case TOGGLE_MODAL:
+      console.log(action.payload);
       return {
         ...state,
         modal: {

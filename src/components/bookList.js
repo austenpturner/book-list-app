@@ -5,7 +5,6 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { IoLibrary } from "react-icons/io5";
 import { Link } from "gatsby";
 import { UIContext } from "../context/uiContext";
-import AuthorsList from "./authorsList";
 
 export default function BookList({ books }) {
   const { uiDispatch } = useContext(UIContext);
@@ -42,8 +41,12 @@ export default function BookList({ books }) {
   }
 
   function handleAddToLibrary(book) {
-    uiDispatch({ type: "TOGGLE_MODAL", payload: { type: "add" } });
-    dispatch(addToLibrary(createLibraryObject(book)));
+    const libraryBook = createLibraryObject(book);
+    uiDispatch({
+      type: "TOGGLE_MODAL",
+      payload: { type: "add", content: libraryBook },
+    });
+    dispatch(addToLibrary(libraryBook));
   }
 
   const buttonStyles =
@@ -90,16 +93,7 @@ export default function BookList({ books }) {
           <div className="self-start text-center">
             <Link to={`/search/book-details/${book.id}`}>
               <h3 className="font-semibold">{book.volumeInfo.title}</h3>
-              <AuthorsList authors={book.volumeInfo.authors} />
-              {/* <p className="text-sm">
-                {`by `}
-                {book.volumeInfo.authors.map((author, index) => (
-                  <span key={index}>
-                    {author}
-                    {index < book.volumeInfo.authors.length - 1 && ", "}
-                  </span>
-                ))}
-              </p> */}
+              <p>{book.volumeInfo.authors.join(", ")}</p>
             </Link>
           </div>
         </li>

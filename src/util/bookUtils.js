@@ -1,13 +1,9 @@
 // Util function to get unique categories from an array of category strings
 export function extractUniqueCategories(categoryArray) {
-  // Flatten the array and split each item into individual category strings
   const allCategories = categoryArray.map((item) => item.split("/")).flat();
-
-  // Remove duplicates by converting to a Set and back to an array
   const uniqueCategories = [
     ...new Set(allCategories.map((category) => category.trim())),
-  ]; // .map to trim spaces
-
+  ];
   return uniqueCategories;
 }
 
