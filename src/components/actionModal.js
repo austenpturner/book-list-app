@@ -36,16 +36,20 @@ export default function ActionModal({ action, book }) {
   }
 
   return (
-    <div>
-      <h2 className="text-blue-600 text-lg md:text-xl text-center mb-6">
+    <div className="flex flex-col items-center justify-center">
+      <h2 className="text-blue-600 text-lg md:text-xl text-center my-2.5 md:mb-6">
         {getActionHeader()}
       </h2>
-      <p>{getActionDescription()}</p>
-      <button>post to profile</button>
-      <div>
+      <p className="md:w-4/5 text-center">{getActionDescription()}</p>
+      <button className="uppercase text-blue-500 bg-white font-semibold drop-shadow-lg hover:scale-105 my-6 py-2 px-6 rounded-xl border border-slate-400">
+        post to profile
+      </button>
+      <div className="flex flex-col items-center mt-2">
         <img src={book.googleBooksData.image} alt="book cover" />
-        <h3>{book.googleBooksData.title}</h3>
-        <p>{`by ${book.googleBooksData.authors.join(", ")}`}</p>
+        <h3 className="text-center mt-2.5">{book.googleBooksData.title}</h3>
+        <p className="text-center text-sm">{`by ${book.googleBooksData.authors.join(
+          ", "
+        )}`}</p>
       </div>
     </div>
   );
